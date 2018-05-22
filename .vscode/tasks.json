@@ -1,0 +1,21 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "CF Test",
+            "type": "shell",
+            "command": "cd '${fileDirname}' && ./test.sh"
+        },
+        {
+            "label": "TC Test",
+            "type": "shell",
+            "command": "cd '${fileDirname}' && g++ '${file}' -o main -std=c++17 && ./main",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}
