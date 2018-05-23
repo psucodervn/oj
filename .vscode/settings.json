@@ -32,7 +32,9 @@
         "iosfwd": "cpp",
         "fstream": "cpp",
         "__string": "cpp",
-        "complex": "cpp"
+        "complex": "cpp",
+        "ios": "cpp",
+        "tuple": "cpp"
     },
     "C_Cpp.intelliSenseEngineFallback": "Disabled",
     "C_Cpp.errorSquiggles": "Disabled"
