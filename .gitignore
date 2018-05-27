@@ -12,3 +12,5 @@ time.out
 *.res
 .DS_Store
 *.dSYM
+**/tests/*.in
+**/tests/*.out
