@@ -108,6 +108,7 @@ for test_file in *.$INPUT_EXT; do
 done
 
 cd ..
+mkdir -p {{ .OutDir }}
 cp main.cc {{ .OutDir }}
 rm -r ./tests main
 {{- end }}

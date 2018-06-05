@@ -1,8 +1,6 @@
 /*
-  ID:   hungle.1
-  LANG: C++14
-  Task: standingout
-  Link: http://www.usaco.org/index.php?page=viewproblem2&cpid=768
+  Task: C. Beauty Pageant
+  Link: http://codeforces.com/problemset/problem/246/C
 */
 #include <bits/stdc++.h>
 using namespace std;
@@ -14,13 +12,11 @@ template<typename T, typename... Args> void err(istream_iterator<string> it, T a
 typedef long long int64;
 
 void solve() {
-  cout << 1 << endl;
+  db(3);
 }
 
 int main(int argc, char* argv[]) {
   ios::sync_with_stdio(false); cin.tie(nullptr);
-  freopen("standingout.in", "r", stdin);
-  freopen("standingout.out", "w", stdout);
   solve();
   return 0;
 }

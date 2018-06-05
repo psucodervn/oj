@@ -67,5 +67,6 @@ for test_file in *.$INPUT_EXT; do
 done
 
 cd ..
+mkdir -p /Users/psucoder/projects/oj/out
 cp main.cc /Users/psucoder/projects/oj/out
 rm -r ./tests main

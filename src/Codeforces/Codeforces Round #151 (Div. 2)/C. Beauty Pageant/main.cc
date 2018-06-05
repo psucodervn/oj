@@ -1,4 +1,3 @@
-
 /*
   Task: C. Beauty Pageant
   Link: http://codeforces.com/problemset/problem/246/C
@@ -13,7 +12,7 @@ template<typename T, typename... Args> void err(istream_iterator<string> it, T a
 typedef long long int64;
 
 void solve() {
-  
+  db(3);
 }
 
 int main(int argc, char* argv[]) {
