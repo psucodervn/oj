@@ -1,8 +1,8 @@
 /*
   ID:   hungle.1
   LANG: C++14
-  TASK: prefix
-  LINK: http://train.usaco.org/usacoprob2?a=1bPlXy3vhlq&S=prefix
+  TASK: nocows
+  LINK: http://train.usaco.org/usacoprob2?a=1bPlXy3vhlq&S=nocows
 */
 #include <bits/stdc++.h>
 using namespace std;
@@ -13,40 +13,32 @@ template<typename T, typename... Args> void err(istream_iterator<string> it, T a
 #define dba(ar) { cerr << #ar << " = ["; for (auto x : ar) cerr << " " << x; cerr << "]" << endl; }
 typedef long long int64;
 
-set<string> P;
-string S;
+const int MOD = 9901;
 
 void solve() {
-  do {
-    string p; cin >> p;
-    if (p == ".") break;
-    P.insert(p);
-  } while (true);
-  string s;
-  while (cin >> s) {
-    S += s;
-  }
-
-  int n = S.length(), ans = 0;
-  vector<bool> f(n + 1); f[0] = true;
-  for (int i = 0; i < n; ++i) {
-    for (auto p : P) {
-      int k = i - p.length() + 1;
-      if (k < 0) continue;
-      if (f[k] && S.substr(k, p.length()) == p) {
-        f[i + 1] = true;
-        ans = i + 1;
-        break;
+  int N, K; cin >> N >> K;
+  auto f = vector<vector<int>>(N + 1, vector<int>(K + 1));
+  f[1][1] = 1;
+  for (int n = 3; n <= N; n += 2) {
+    for (int k = 1; k <= K; ++k) {
+      auto& res = f[n][k];
+      for (int l = 1; l <= n - 2; l += 2) {
+        int r = n - l - 1;
+        res = (res + f[l][k - 1] * f[r][k - 1]) % MOD;
+        for (int kk = k - 2; kk >= 1; --kk) {
+          res = (res + f[l][kk] * f[r][k - 1]) % MOD;
+          res = (res + f[l][k - 1] * f[r][kk]) % MOD;
+        }
       }
     }
   }
-  cout << ans << endl;
+  cout << f[N][K] << endl;
 }
 
 int main(int argc, char* argv[]) {
   ios::sync_with_stdio(false); cin.tie(nullptr);
-  freopen("prefix.in", "r", stdin);
-  freopen("prefix.out", "w", stdout);
+  freopen("nocows.in", "r", stdin);
+  freopen("nocows.out", "w", stdout);
   solve();
   return 0;
 }

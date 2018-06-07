@@ -1,0 +1,4 @@
+debug: true
+workDir: /Users/psucoder/projects/oj/
+srcDir: /Users/psucoder/projects/oj/src/
+tplDir: /Users/psucoder/projects/oj/templates/

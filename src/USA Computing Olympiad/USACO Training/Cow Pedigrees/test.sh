@@ -1,49 +1,7 @@
-{{- define "main.cc" }}/*
-  {{- if eq .Site "USA Computing Olympiad" }}
-  ID:   hungle.1
-  LANG: C++14
-  TASK: {{ .ID }}
-  LINK: {{ .URL }}
-  {{- else }}
-  Task: {{ .Name }}
-  Link: {{ .URL }}
-  {{- end }}
-*/
-#include <bits/stdc++.h>
-using namespace std;
-
-void err(istream_iterator<string> it) { cerr << endl; }
-template<typename T, typename... Args> void err(istream_iterator<string> it, T a, Args... args) { cerr << *it << " = " << a << ", "; err(++it, args...); }
-#define db(args...) { string _s = #args; replace(_s.begin(), _s.end(), ',', ' '); stringstream _ss(_s); istream_iterator<string> _it(_ss); err(_it, args); }
-#define dba(ar) { cerr << #ar << " = ["; for (auto x : ar) cerr << " " << x; cerr << "]" << endl; }
-typedef long long int64;
-
-void solve() {
-  
-}
-
-int main(int argc, char* argv[]) {
-  ios::sync_with_stdio(false); cin.tie(nullptr);
-  {{- if ne .Input.Type "stdin" }}
-  freopen("{{ .Input.FileName }}", "r", stdin);
-  {{- end }}
-  {{- if ne .Output.Type "stdout" }}
-  freopen("{{ .Output.FileName }}", "w", stdout);
-  {{- end }}
-  solve();
-  return 0;
-}
-{{ end }}
-
-{{- define "test.sh" }}#!/bin/bash
+#!/bin/bash
 if ! g++ -std=c++14 -Wall main.cc -o main; then exit; fi
-{{- if ne .Input.Type "stdin" }}
-TASK_IN={{ .Input.FileName }}
-TASK_OUT={{ .Output.FileName }}
-{{- else }}
-TASK_IN=test.in
-TASK_OUT=test.out
-{{- end }}
+TASK_IN=nocows.in
+TASK_OUT=nocows.out
 INPUT_EXT=in
 ANSWER_EXT=ans
 OUTPUT_EXT=out
@@ -79,7 +37,7 @@ function run_test() {
     echo [1m[31mSample test \#$TEST_NUM: Runtime Error[0m `cat time.out`
     echo ========================================
     echo Sample Input \#$TEST_NUM
-    head -n 20 $TASK_IN
+    cat $TASK_IN
   else
     if diff --brief --strip-trailing-cr --ignore-space-change $TASK_OUT $TASK_ANS; then
       echo [1m[32mSample test \#$TEST_NUM: Accepted[0m `cat time.out`
@@ -87,13 +45,13 @@ function run_test() {
       echo [1m[31mSample test \#$TEST_NUM: Wrong Answer[0m `cat time.out`
       echo ========================================
       echo Sample Input \#$TEST_NUM
-      head -n 20 $TASK_IN
+      cat $TASK_IN
       echo ========================================
       echo Sample Output \#$TEST_NUM
-      head -n 20 $TASK_ANS
+      cat $TASK_ANS
       echo ========================================
       echo My Output \#$TEST_NUM
-      head -n 20 $TASK_OUT
+      cat $TASK_OUT
       echo ========================================
     fi
   fi
@@ -109,7 +67,6 @@ for test_file in *.$INPUT_EXT; do
 done
 
 cd ..
-mkdir -p {{ .OutDir }}
-cp main.cc {{ .OutDir }}
+mkdir -p /Users/psucoder/projects/oj/out
+cp main.cc /Users/psucoder/projects/oj/out
 rm -r ./tests main
-{{- end }}
