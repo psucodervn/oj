@@ -1,6 +1,6 @@
 /*
-  Task: E. Post Lamps
-  Link: http://codeforces.com/contest/990/problem/E
+  Task: D. Unbearable Controversy of Being
+  Link: http://codeforces.com/problemset/problem/489/D
 */
 #include <bits/stdc++.h>
 using namespace std;
@@ -10,26 +10,37 @@ template<typename T, typename... Args> void err(istream_iterator<string> it, T a
 #define db(args...) { string _s = #args; replace(_s.begin(), _s.end(), ',', ' '); stringstream _ss(_s); istream_iterator<string> _it(_ss); err(_it, args); }
 #define dba(ar) { cerr << #ar << " = ["; for (auto x : ar) cerr << " " << x; cerr << "]" << endl; }
 typedef long long int64;
-#define ret(x) { cout << x << endl; return; }
+
+int64 calcFromU(int u, vector<vector<int>>& adj) {
+  map<int, int> cnt;
+  for (auto v : adj[u]) {
+    for (auto k : adj[v]) {
+      if (k != u) ++cnt[k];
+    }
+  }
+  int64 res = 0;
+  for (auto p : cnt) {
+    int64 c = p.second;
+    res += c * (c - 1);
+  }
+  return res >> 1;
+}
 
 void solve() {
   // input
-  int64 n, m, k; cin >> n >> m >> k;
-  vector<int> s(m);
-  for (int i = 0; i < m; ++i) cin >> s[i];
-  vector<int> a(k + 1);
-  for (int i = 1; i <= k; ++i) cin >> a[i];
-  // calc
-  sort(begin(s), end(s));
-  if (s[0] == 0) ret(-1);
-  int maxD = -1;
-  for (int i = 1, d = 1; i <= m; ++i) {
-    if (i == m) { maxD = max(maxD, d); break; }
-    if (s[i] == s[i - 1] + 1) ++d;
-    else { maxD = max(maxD, d); d = 1; }
+  int n, m; cin >> n >> m;
+  vector<vector<int>> adj(n, vector<int>());
+  while (m-- > 0) {
+    int u, v; cin >> u >> v; u--; v--;
+    adj[u].push_back(v);
   }
-  db(maxD);
-  if (k <= maxD) ret(-1);
+  // calc
+  int64 ans = 0;
+  for (int u = 0; u < n; ++u) {
+    ans += calcFromU(u, adj);
+  }
+  // output
+  cout << ans << endl;
 }
 
 int main(int argc, char* argv[]) {

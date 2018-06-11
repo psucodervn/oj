@@ -6,7 +6,7 @@
         {
             "label": "CF Test",
             "type": "shell",
-            "command": "cd '${fileDirname}' && ./test.sh"
+            "command": "cd \"${fileDirname}\" && ./test.sh"
         },
         {
             "label": "TC Test",
