@@ -1,6 +1,7 @@
-
 /*
-  Task: Problem 1. Standing Out from the Herd
+  ID:   hungle.1
+  LANG: C++14
+  Task: standingout
   Link: http://www.usaco.org/index.php?page=viewproblem2&cpid=768
 */
 #include <bits/stdc++.h>
@@ -13,7 +14,7 @@ template<typename T, typename... Args> void err(istream_iterator<string> it, T a
 typedef long long int64;
 
 void solve() {
-  
+  cout << 1 << endl;
 }
 
 int main(int argc, char* argv[]) {
