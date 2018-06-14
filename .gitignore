@@ -17,3 +17,5 @@ time.out
 *.dSYM
 **/tests/*.in
 **/tests/*.out
+*.bak.*
+*.bak
